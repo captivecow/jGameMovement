@@ -1,12 +1,13 @@
 package io.github.captivecow;
 
 import io.javalin.Javalin;
+import io.javalin.http.staticfiles.Location;
 
 public class JGameMovement
 {
     public static void main( String[] args ) {
-        Javalin app = Javalin.create(/*config*/)
-                .get("/", ctx -> ctx.result("Hello World"))
-                .start(8080);
+        Javalin webServer = Javalin.create(config -> {
+            config.staticFiles.add("/public", Location.CLASSPATH);
+        }).start(8080);
     }
 }
